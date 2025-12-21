@@ -1,0 +1,133 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>10.0.20506</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <RootNamespace></RootNamespace>
+    <ProjectGuid>{F0BFAEE3-60D1-DE78-6453-1A324F712FB1}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <AssemblyName>Assembly-CSharp</AssemblyName>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <BaseDirectory>Assets</BaseDirectory>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>Temp\bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE;UNITY_5_3_OR_NEWER;UNITY_5_4_OR_NEWER;UNITY_5_5_OR_NEWER;UNITY_5_6_OR_NEWER;UNITY_5_6_7;UNITY_5_6;UNITY_5;UNITY_ANALYTICS;ENABLE_AUDIO;ENABLE_CACHING;ENABLE_CLOTH;ENABLE_DUCK_TYPING;ENABLE_GENERICS;ENABLE_PVR_GI;ENABLE_MICROPHONE;ENABLE_MULTIPLE_DISPLAYS;ENABLE_PHYSICS;ENABLE_RUNTIME_NAVMESH_BUILDING;ENABLE_SPRITERENDERER_FLIPPING;ENABLE_SPRITES;ENABLE_TERRAIN;ENABLE_RAKNET;ENABLE_UNET;ENABLE_LZMA;ENABLE_UNITYEVENTS;ENABLE_WEBCAM;ENABLE_WWW;ENABLE_CLOUD_SERVICES_COLLAB;ENABLE_CLOUD_SERVICES_ADS;ENABLE_CLOUD_HUB;ENABLE_CLOUD_PROJECT_ID;ENABLE_CLOUD_SERVICES_UNET;ENABLE_CLOUD_SERVICES_BUILD;ENABLE_CLOUD_LICENSE;ENABLE_EDITOR_METRICS;ENABLE_EDITOR_METRICS_CACHING;ENABLE_NATIVE_ARRAY;INCLUDE_DYNAMIC_GI;INCLUDE_GI;PLATFORM_SUPPORTS_MONO;RENDER_SOFTWARE_CURSOR;INCLUDE_PUBNUB;ENABLE_PLAYMODE_TESTS_RUNNER;ENABLE_SCRIPTING_NEW_CSHARP_COMPILER;ENABLE_VIDEO;UNITY_STANDALONE_WIN;UNITY_STANDALONE;ENABLE_SUBSTANCE;ENABLE_RUNTIME_GI;ENABLE_MOVIES;ENABLE_NETWORK;ENABLE_CRUNCH_TEXTURE_COMPRESSION;ENABLE_UNITYWEBREQUEST;ENABLE_CLOUD_SERVICES;ENABLE_CLOUD_SERVICES_ANALYTICS;ENABLE_CLOUD_SERVICES_PURCHASING;ENABLE_CLOUD_SERVICES_CRASH_REPORTING;ENABLE_EVENT_QUEUE;ENABLE_CLUSTERINPUT;ENABLE_VR;ENABLE_WEBSOCKET_HOST;ENABLE_MONO;NET_2_0_SUBSET;ENABLE_PROFILER;UNITY_ASSERTIONS;UNITY_EDITOR;UNITY_EDITOR_64;UNITY_EDITOR_WIN;ENABLE_NATIVE_ARRAY_CHECKS;UNITY_TEAM_LICENSE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <NoWarn>0169</NoWarn>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>Temp\bin\Release\</OutputPath>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <NoWarn>0169</NoWarn>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.XML" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="UnityEngine">
+      <HintPath>C:/Program Files/Unity/Editor/Data/Managed/UnityEngine.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEditor">
+      <HintPath>C:/Program Files/Unity/Editor/Data/Managed/UnityEditor.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+     <Compile Include="Assets\AI\Scripts\AIControl.cs" />
+     <Compile Include="Assets\AI\Scripts\AIWeaponControl.cs" />
+     <Compile Include="Assets\AI\Scripts\AnimationControl\AIAnimationControl.cs" />
+     <Compile Include="Assets\AI\Scripts\AnimationControl\AnimationStateInfo.cs" />
+     <Compile Include="Assets\AI\Scripts\AnimationControl\CustomStateMachineBehaviour.cs" />
+     <Compile Include="Assets\AI\Scripts\AnimationControl\WeaponPutDownSMB.cs" />
+     <Compile Include="Assets\AI\Scripts\AnimationControl\WeaponReadySMB.cs" />
+     <Compile Include="Assets\AI\Scripts\BlackBoard\BlackBoardManager.cs" />
+     <Compile Include="Assets\AI\Scripts\BlackBoard\Data\BlackBoardData.cs" />
+     <Compile Include="Assets\AI\Scripts\BlackBoard\Data\KnownThreatInfoData.cs" />
+     <Compile Include="Assets\AI\Scripts\BlackBoard\Data\LastKnownThreatPositionData.cs" />
+     <Compile Include="Assets\AI\Scripts\BlackBoard\Data\MoveToPositionData.cs" />
+     <Compile Include="Assets\AI\Scripts\BlackBoard\Data\SelectedThreatInfoData.cs" />
+     <Compile Include="Assets\AI\Scripts\Debugger\VisualDebugger.cs" />
+     <Compile Include="Assets\AI\Scripts\GAction\AllActions\AimWeaponAction.cs" />
+     <Compile Include="Assets\AI\Scripts\GAction\AllActions\AimWeaponSimpleAction.cs" />
+     <Compile Include="Assets\AI\Scripts\GAction\AllActions\FireWeaponAction.cs" />
+     <Compile Include="Assets\AI\Scripts\GAction\AllActions\FireWeaponSimpleAction.cs" />
+     <Compile Include="Assets\AI\Scripts\GAction\AllActions\IdleAction.cs" />
+     <Compile Include="Assets\AI\Scripts\GAction\AllActions\MoveToPositionAction.cs" />
+     <Compile Include="Assets\AI\Scripts\GAction\AllActions\SearchLastKnownThreatPositionAction.cs" />
+     <Compile Include="Assets\AI\Scripts\GAction\AllActions\UnAimWeaponAction.cs" />
+     <Compile Include="Assets\AI\Scripts\GAction\AllActions\UnAimWeaponSimpleAction.cs" />
+     <Compile Include="Assets\AI\Scripts\GAction\GAction.cs" />
+     <Compile Include="Assets\AI\Scripts\GAction\GActionNode.cs" />
+     <Compile Include="Assets\AI\Scripts\GGoal\AllGoals\EliminateThreatGoal.cs" />
+     <Compile Include="Assets\AI\Scripts\GGoal\AllGoals\IdleGoal.cs" />
+     <Compile Include="Assets\AI\Scripts\GGoal\AllGoals\SearchLostThreatGoal.cs" />
+     <Compile Include="Assets\AI\Scripts\GGoal\GGoal.cs" />
+     <Compile Include="Assets\AI\Scripts\GPlanner\GPlanner.cs" />
+     <Compile Include="Assets\AI\Scripts\GSensor\GSensor.cs" />
+     <Compile Include="Assets\AI\Scripts\GSensor\SensorTest.cs" />
+     <Compile Include="Assets\AI\Scripts\GSensor\VisionSensor.cs" />
+     <Compile Include="Assets\AI\Scripts\GSensorDataProcessor\GSensorDataProcessor.cs" />
+     <Compile Include="Assets\AI\Scripts\GSensorDataProcessor\PrimaryThreatSelectionProcessor.cs" />
+     <Compile Include="Assets\AI\Scripts\GWorldState.cs" />
+     <Compile Include="Assets\Scripts\Bullet.cs" />
+     <Compile Include="Assets\Scripts\CameraFollow.cs" />
+     <Compile Include="Assets\Scripts\CapsuleControl.cs" />
+     <Compile Include="Assets\Scripts\CharacterAimState.cs" />
+     <Compile Include="Assets\Scripts\CommonUtil.cs" />
+     <Compile Include="Assets\Scripts\CrouchEventSO.cs" />
+     <Compile Include="Assets\Scripts\DeathEventSO.cs" />
+     <Compile Include="Assets\Scripts\FPSLimiter.cs" />
+     <Compile Include="Assets\Scripts\HealthControl.cs" />
+     <Compile Include="Assets\Scripts\IKControl.cs" />
+     <Compile Include="Assets\Scripts\ShoulderSetting.cs" />
+     <Compile Include="Assets\Scripts\TargetableBodyPart.cs" />
+     <Compile Include="Assets\Scripts\Weapon.cs" />
+     <Compile Include="Assets\Scripts\WeaponHandPositionSetting.cs" />
+     <Compile Include="Assets\Scripts\WeaponInventory.cs" />
+     <Compile Include="Assets\Scripts\WeaponPositionControl.cs" />
+     <Compile Include="Assets\Scripts\WeaponRecoil.cs" />
+ <Reference Include="UnityEngine.UI">
+ <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>
+ </Reference>
+ <Reference Include="UnityEngine.Networking">
+ <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/Networking/UnityEngine.Networking.dll</HintPath>
+ </Reference>
+ <Reference Include="UnityEngine.TestRunner">
+ <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/TestRunner/UnityEngine.TestRunner.dll</HintPath>
+ </Reference>
+ <Reference Include="nunit.framework">
+ <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/TestRunner/net35/unity-custom/nunit.framework.dll</HintPath>
+ </Reference>
+ <Reference Include="UnityEngine.Analytics">
+ <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/UnityAnalytics/UnityEngine.Analytics.dll</HintPath>
+ </Reference>
+ <Reference Include="UnityEngine.HoloLens">
+ <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/UnityHoloLens/RuntimeEditor/UnityEngine.HoloLens.dll</HintPath>
+ </Reference>
+ <Reference Include="UnityEngine.VR">
+ <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/UnityVR/RuntimeEditor/UnityEngine.VR.dll</HintPath>
+ </Reference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+  
+</Project>
