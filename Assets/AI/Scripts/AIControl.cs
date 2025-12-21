@@ -100,6 +100,7 @@ public class AIControl : MonoBehaviour
         agentWorldState.Add(AIWorldStateKey.HasPrimaryTarget.ToString(), false);
         agentWorldState.Add(AIWorldStateKey.AimWeapon.ToString(), false);
         agentWorldState.Add(AIWorldStateKey.HasMovedToPosition.ToString(), false);
+        agentWorldState.Add(AIWorldStateKey.LastKnownPositionInvestigated.ToString(), false);
     }
 
     void Update()
@@ -111,6 +112,8 @@ public class AIControl : MonoBehaviour
         if (Replan)
         {
             Debug.Log("Replan");
+
+            ResetWorldStates();
 
             UpdateSensors(); // Update replan
 
@@ -143,6 +146,12 @@ public class AIControl : MonoBehaviour
 
         //states.ForEach(s => s.OnUpdate(Blackboard));
 
+    }
+
+    private void ResetWorldStates()
+    {
+        agentWorldState.Set(AIWorldStateKey.HasMovedToPosition.ToString(), false);
+        agentWorldState.Set(AIWorldStateKey.LastKnownPositionInvestigated.ToString(), false);
     }
 
     private void UpdateActionSequence()

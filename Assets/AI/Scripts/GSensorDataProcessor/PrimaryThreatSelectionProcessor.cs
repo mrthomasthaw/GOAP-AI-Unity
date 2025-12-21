@@ -56,12 +56,14 @@ public class PrimaryThreatSelectionDataProcessor : GSensorDataProcessor
 				blackBoardManager.RemoveLastData<SelectedThreatInfoData>(BlackBoardKey.SelectedPrimaryThreat);
 				blackBoardManager.AddOrReplace<LastKnownThreatPositionData>(new LastKnownThreatPositionData()
 				{
-					LastKnownPosition = selectedThreat.ThreatTransform.position
+					LastKnownPosition = selectedThreat.ThreatTransform.position,
+                    IsStillValid = true
 				}, BlackBoardKey.LastKnownThreatPosition);
                 
                 blackBoardManager.AddData<MoveToPositionData>(new MoveToPositionData()
                 {
-                    Position = selectedThreat.ThreatTransform.position
+                    Position = selectedThreat.ThreatTransform.position,
+                    IsStillValid = true
                 }, BlackBoardKey.MoveTo);
 
                 lastknownPositionDebug = selectedThreat.ThreatTransform.position;

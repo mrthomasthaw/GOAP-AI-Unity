@@ -13,4 +13,8 @@ public class MoveToPositionData : BlackBoardData
     }
 
     public Vector3 Position { get; set;}
+
+    public MoveToPositionData() {
+        IsStillValid = true;
+    }
 }

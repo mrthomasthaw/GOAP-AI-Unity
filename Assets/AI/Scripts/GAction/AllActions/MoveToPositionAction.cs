@@ -54,7 +54,8 @@ public class MoveToPositionAction : GAction
     private bool HasReachedDestination()
     {
         float dist = Vector3.Distance(agent.transform.position, moveToData.Position);
-        if (dist < 0.2f)
+        Debug.Log("dist : " + dist);
+        if (dist < 1.2f)
             return true;
 
         return false;

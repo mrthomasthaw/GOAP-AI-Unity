@@ -14,6 +14,7 @@ public class SearchLastKnownThreatPositionAction : GAction
 
     public override bool OnActionPerform()
     {
+        blackBoardManager.RemoveLastData<LastKnownThreatPositionData>(BlackBoardKey.LastKnownThreatPosition);
         return true;
     }
 }
