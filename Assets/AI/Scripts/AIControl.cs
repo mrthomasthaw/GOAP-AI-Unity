@@ -229,7 +229,7 @@ public class AIControl : MonoBehaviour
         if (timer <= 0)
         {
             sensorList.ForEach(x => x.OnUpdate());
-            timer = 2f;
+            timer = 1.5f;
         }
 
         timer -= Time.deltaTime;

@@ -36,12 +36,16 @@ public class VisionSensor : GSensor
             .GetAllDataByKey<KnownThreatInfoData>(BlackBoardKey.KnownThreatInfo)));
 
         float minDist = float.MaxValue;
-        Collider[] cols = Physics.OverlapSphere(aiHeadT.position, sightRadius, LayerMask.GetMask("Human"));
+        Collider[] cols = new Collider[3];
+        Physics.OverlapSphereNonAlloc(aiHeadT.position, sightRadius, cols, LayerMask.GetMask("Human"));
 
-
+        Debug.Log("scanned coll " + cols.Length);
         float scoreBonus = 0;
         for (int x = 0; x < cols.Length; x++)
         {
+            if (cols[x] == null)
+                continue;
+            
             HealthControl targetHealth = cols[x].transform.GetComponent<HealthControl>();
 
             if (targetHealth == null || targetHealth.IsDeath)
