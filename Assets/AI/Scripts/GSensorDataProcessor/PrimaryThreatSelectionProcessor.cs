@@ -11,14 +11,17 @@ public class PrimaryThreatSelectionDataProcessor : GSensorDataProcessor
 
     private SelectedThreatInfoData selectedThreat;
 
+    private AIControl aiControl;
+
     private Vector3 lastknownPositionDebug;
 
 
 
-	public PrimaryThreatSelectionDataProcessor (BlackBoardManager blackBoardManager, GWorldState agentWorldState) 
+    public PrimaryThreatSelectionDataProcessor (BlackBoardManager blackBoardManager, GWorldState agentWorldState, AIControl aiControl) 
 	{
 		this.blackBoardManager = blackBoardManager;
 		this.agentWorldState = agentWorldState;
+        this.aiControl = aiControl;
 
         VisualDebugger.instance.gizmosDrawList.Add(DrawGizmos);
 	}
@@ -48,6 +51,7 @@ public class PrimaryThreatSelectionDataProcessor : GSensorDataProcessor
             blackBoardManager.AddOrReplace<SelectedThreatInfoData>(selectedThreat, BlackBoardKey.SelectedPrimaryThreat);
 
             agentWorldState.Set(AIWorldStateKey.HasPrimaryTarget.ToString(), true);
+            aiControl.Replan = true;
         }
         else
         {
@@ -69,6 +73,7 @@ public class PrimaryThreatSelectionDataProcessor : GSensorDataProcessor
                 lastknownPositionDebug = selectedThreat.ThreatTransform.position;
 				
 				agentWorldState.Set(AIWorldStateKey.HasPrimaryTarget.ToString(), false);
+                aiControl.Replan = true;
 				selectedThreat = null;
 			} 
         }

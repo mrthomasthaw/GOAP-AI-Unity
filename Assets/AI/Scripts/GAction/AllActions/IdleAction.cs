@@ -17,7 +17,11 @@ public class IdleAction : GAction
 
         Preconditions.Add(AIWorldStateKey.AimWeapon.ToString(), false);
         Preconditions.Add(AIWorldStateKey.HasPrimaryTarget.ToString(), false);
-        Preconditions.Add(AIWorldStateKey.LastKnownPositionInvestigated.ToString(), true);
+    }
+
+    public override bool OnActionPerform()
+    {
+        return false;
     }
 
 }

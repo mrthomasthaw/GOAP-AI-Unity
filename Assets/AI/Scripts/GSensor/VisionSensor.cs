@@ -5,7 +5,7 @@ using System.Linq;
 
 public class VisionSensor : GSensor
 {
-    private float sightRadius = 10f;
+    private float sightRadius = 15f;
     private Transform aiTransform;
     private Transform aiHeadT;
     private BlackBoardManager blackBoardManager;

@@ -24,7 +24,6 @@ public class MoveToPositionAction : GAction
 
     public override void OnActionStart()
     {
-        Debug.Log("blackBoard " + blackBoardManager);
         moveToData = blackBoardManager.GetOneDataByKey<MoveToPositionData>(BlackBoardKey.MoveTo);
         if (moveToData != null && moveToData.IsStillValid) 
         {
@@ -43,10 +42,7 @@ public class MoveToPositionAction : GAction
 
     public override void OnActionComplete()
     {
-        if (!moveToData.IsStillValid)
-        {
-            agent.destination = agent.transform.position;
-        }
+        agent.destination = agent.transform.position;
 
         moveToData = null;
     }
@@ -54,7 +50,6 @@ public class MoveToPositionAction : GAction
     private bool HasReachedDestination()
     {
         float dist = Vector3.Distance(agent.transform.position, moveToData.Position);
-        Debug.Log("dist : " + dist);
         if (dist < 1.2f)
             return true;
 

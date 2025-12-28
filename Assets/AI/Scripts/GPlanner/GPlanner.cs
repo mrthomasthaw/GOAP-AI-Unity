@@ -10,6 +10,8 @@ public class GPlanner
 
     public List<GAction> allActionList = new List<GAction>();
 
+    public Dictionary<string, List<GAction>> goalActionsSet = new Dictionary<string, List<GAction>>();
+
     //public Dictionary<string, object> currentWorldStates;
 
     public GGoal currentGoal;
@@ -18,7 +20,7 @@ public class GPlanner
 
     private GWorldState agentWorldState;
 
-    public GPlanner(GWorldState _agentWorldState, List<GGoal> _goalList, List<GAction> _allActionList, BlackBoardManager blackBoardManager)
+    public GPlanner(GWorldState _agentWorldState, List<GGoal> _goalList, List<GAction> _allActionList, Dictionary<string, List<GAction>> goalActionsSet, BlackBoardManager blackBoardManager)
     {
         //currentWorldStates = new Dictionary<string, object>(worldStates); // These must be a copy from aiController
 
@@ -30,6 +32,8 @@ public class GPlanner
         allActionList.ForEach(a => a.SetUp(blackBoardManager));
 
         currentGoal = goalList[0];
+
+        this.goalActionsSet = goalActionsSet;
     }
 
     public void CalculateGoalPriority()
@@ -59,7 +63,7 @@ public class GPlanner
 
     public Queue<GAction> CalculateActionPlan()
     {
-        List<GAction> clonedActionList = new List<GAction>(allActionList);
+        List<GAction> clonedActionList = new List<GAction>(goalActionsSet[currentGoal.GetType().Name]);
 
         List<GActionNode> leaves = new List<GActionNode>();
         GActionNode rootNode = new GActionNode(0, null, null, agentWorldState.WorldStates);

@@ -25,8 +25,6 @@ public class AIControl : MonoBehaviour
 
     private LayerMask obstacleLayer;
 
-    private bool Replan;
-
     private float timer;
 
 	private float sensorDataProcessorCountDownTimer;
@@ -38,6 +36,8 @@ public class AIControl : MonoBehaviour
 	private Transform gunBarrelT;
 
     private NavMeshAgent navAgent;
+
+    public bool Replan { get; set;}
 
     private void Start()
     {
@@ -57,7 +57,7 @@ public class AIControl : MonoBehaviour
 
 		sensorDataProcessorList = new List<GSensorDataProcessor>
 		{ 
-			new PrimaryThreatSelectionDataProcessor(blackBoardManager, agentWorldState)
+			new PrimaryThreatSelectionDataProcessor(blackBoardManager, agentWorldState, this)
 		};
 
         AIWeaponControl weaponControl = GetComponent<AIWeaponControl>();
@@ -80,17 +80,26 @@ public class AIControl : MonoBehaviour
             searchLastKnownThreatAction
         };
 
+        IdleGoal idleGoal = new IdleGoal();
+        EliminateThreatGoal eliminateThreatGoal = new EliminateThreatGoal();
+        SearchLostThreatGoal searchLostThreatGoal = new SearchLostThreatGoal();
+
+        Dictionary<string, List<GAction>> goalActionsSet = new Dictionary<string, List<GAction>>();
+        goalActionsSet.Add(idleGoal.GetType().Name, new List<GAction>() {idleAction, unAimWeaponAction});
+        goalActionsSet.Add(eliminateThreatGoal.GetType().Name, new List<GAction>() {aimWeaponAction, fireWeaponAction});
+        goalActionsSet.Add(searchLostThreatGoal.GetType().Name, new List<GAction>() {moveToAction, searchLastKnownThreatAction});
+
         currentAction = actionList.ToArray()[0];
 
 
         List<GGoal> goalList = new List<GGoal>
         {
-			new IdleGoal(),
-			new EliminateThreatGoal(),
-			new SearchLostThreatGoal()
+                idleGoal,
+                eliminateThreatGoal,
+			    searchLostThreatGoal
         };
 
-        planner = new GPlanner(agentWorldState, goalList, actionList, blackBoardManager);
+        planner = new GPlanner(agentWorldState, goalList, actionList, goalActionsSet , blackBoardManager);
 
     }
 
@@ -211,8 +220,6 @@ public class AIControl : MonoBehaviour
 
             //if current action is repeatable, it should update the worldstates
         }
-
-        Debug.Log(agentWorldState.PrintWorldStates());
         //NOTE NEED TO UPDATE WORLD STATES HERE
 
     }
@@ -233,7 +240,7 @@ public class AIControl : MonoBehaviour
 		if (sensorDataProcessorCountDownTimer <= 0) 
 		{
 			sensorDataProcessorList.ForEach (x => x.OnUpdate ());
-			sensorDataProcessorCountDownTimer = 2.5f;
+			sensorDataProcessorCountDownTimer = 0.5f;
 		}
 
 		sensorDataProcessorCountDownTimer -= Time.deltaTime;
@@ -243,8 +250,10 @@ public class AIControl : MonoBehaviour
     {
         currentAction.OnActionComplete(); // when the action is completed
 
-        if(! abortAction) // if not end with prematurely
+        if (!abortAction) // if not end with prematurely
             agentWorldState.CopyWorldStates(currentAction.Effects);
+        else
+            currentAction.AbortAction = false;
 
         currentAction = null;
 
