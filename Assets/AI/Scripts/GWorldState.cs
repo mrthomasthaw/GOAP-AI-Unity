@@ -60,5 +60,6 @@ public enum AIWorldStateKey
     AlertType,
     HasPrimaryTarget,
     LastKnownPositionInvestigated,
-    HasMovedToPosition
+    HasMovedToPosition,
+    AttackFromAPosition
 }

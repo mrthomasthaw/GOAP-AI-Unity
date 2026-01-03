@@ -30,4 +30,6 @@ public enum BlackBoardKey
     TurnTo,
     LookAt,
     PatrolRoute,
+    AttackPosition,
+    ThreatAssessmentInfo
 }

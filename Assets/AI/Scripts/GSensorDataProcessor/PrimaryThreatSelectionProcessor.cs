@@ -28,7 +28,7 @@ public class PrimaryThreatSelectionDataProcessor : GSensorDataProcessor
 
 	public override void OnUpdate()
     {
-		Debug.Log ("Updateing threat selection ");
+		Debug.Log ("Updating threat selection ");
         List<KnownThreatInfoData> knownThreatList = blackBoardManager.GetAllDataByKey<KnownThreatInfoData>
             (BlackBoardKey.KnownThreatInfo);
 
@@ -49,6 +49,11 @@ public class PrimaryThreatSelectionDataProcessor : GSensorDataProcessor
             //It make sure that only one data in the list of blackboard
             //blackBoardManager.RemoveLastData<SelectedThreatInfoData>(BlackBoardKey.SelectedPrimaryThreat);
             blackBoardManager.AddOrReplace<SelectedThreatInfoData>(selectedThreat, BlackBoardKey.SelectedPrimaryThreat);
+            blackBoardManager.AddOrReplace<ThreatAssessmentData>(new ThreatAssessmentData()
+            {
+                threatLevel = ThreatAssessmentData.ThreatLevel.Normal
+            }
+            , BlackBoardKey.ThreatAssessmentInfo);
 
             agentWorldState.Set(AIWorldStateKey.HasPrimaryTarget.ToString(), true);
             aiControl.Replan = true;
@@ -58,6 +63,8 @@ public class PrimaryThreatSelectionDataProcessor : GSensorDataProcessor
 			if (selectedThreat != null) 
 			{
 				blackBoardManager.RemoveLastData<SelectedThreatInfoData>(BlackBoardKey.SelectedPrimaryThreat);
+                blackBoardManager.RemoveLastData<ThreatAssessmentData>(BlackBoardKey.ThreatAssessmentInfo);
+
 				blackBoardManager.AddOrReplace<LastKnownThreatPositionData>(new LastKnownThreatPositionData()
 				{
 					LastKnownPosition = selectedThreat.ThreatTransform.position,
@@ -69,6 +76,7 @@ public class PrimaryThreatSelectionDataProcessor : GSensorDataProcessor
                     Position = selectedThreat.ThreatTransform.position,
                     IsStillValid = true
                 }, BlackBoardKey.MoveTo);
+                            
 
                 lastknownPositionDebug = selectedThreat.ThreatTransform.position;
 				

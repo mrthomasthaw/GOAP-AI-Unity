@@ -25,6 +25,9 @@ public class AIControl : MonoBehaviour
 
     private LayerMask obstacleLayer;
 
+    [SerializeField]
+    private LayerMask tacticalPointLayer;
+
     private float timer;
 
 	private float sensorDataProcessorCountDownTimer;
@@ -47,10 +50,14 @@ public class AIControl : MonoBehaviour
 
 		VisionSensor visionSensor = new VisionSensor(transform, 
             transform, blackBoardManager, obstacleLayer, agentWorldState);
+
+        TacticalPositionSensor tacticalPositionSensor = new TacticalPositionSensor(transform,
+            blackBoardManager, tacticalPointLayer);
 		
         sensorList = new List<GSensor>
         {
-            visionSensor
+            visionSensor,
+            tacticalPositionSensor
         };
 
         sensorList.ForEach(s  => s.SetUp());
